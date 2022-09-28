@@ -1,16 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const mongoose = require("mongoose");
-
-// создание переменной адреса для дальнейшего подключения с помощью mongoose -  "mongodb+srv://<login>:<password>@cluster0.lh0mpjn.mongodb.net/<database-name>?retryWrites=true&w=majority"
-const DB_HOST = "mongodb+srv://Maksim:BdRIDdBxrRd2hC8T@cluster0.lh0mpjn.mongodb.net/db-contacts?retryWrites=true&w=majority"
-mongoose.connect(DB_HOST)
-  .then(() => console.log("Database connection successful"))
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+require("dotenv").config();
 
 const contactsRouter = require('./routes/api/contacts');
 
