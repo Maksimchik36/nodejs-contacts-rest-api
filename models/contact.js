@@ -23,11 +23,13 @@ const contactSchema = new Schema({
 {versionKey: false});
 
 
+// срабатывает в случае ошибки при операции POST(при попытке добавить ещё один элемент с уже существующим таким уникальным полем)
+contactSchema.post("save", handleSaveErrors);
+
+
 // создает модель Contact, вызывая ф-ю model("название коллекции, с которой будет работать", схема, по которой будет осуществляться валидация )
 const Contact = model("contact", contactSchema);
 
-
-contactSchema.post("save", handleSaveErrors);
 
 // создает схему для валидации body при запросе
 const addSchema = Joi.object({
