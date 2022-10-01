@@ -2,12 +2,12 @@ const {RequestError} = require("../helpers");
 
 
 // проверка на правильный тип вводимых значений
-const validateBody = (schema) => {
+const validateFavorite = (schema) => {
       const func = (req, res, next) => {
-      const {error} = schema.validate(req.body)
+        const { error } = schema.validate(req.body);
       if(error){
         // передача ошибки в ф-ю с четырьмя параметрами - app.use((err, req, res, next)
-        next(RequestError(400, "Missing required name field."))
+        next(RequestError(400, "Missing field favorite."))
       }
       // запуск поиска express-ом обработчика ошибок. ищет ф-ю с четырьмя параметрами - app.use((err, req, res, next)
       next();
@@ -17,4 +17,4 @@ const validateBody = (schema) => {
 }
 
 
-module.exports = validateBody;
+module.exports = validateFavorite;

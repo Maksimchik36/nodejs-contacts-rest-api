@@ -37,18 +37,20 @@ const addSchema = Joi.object({
     email: Joi.string().required(),
     phone: Joi.string().required(),
     favorite: Joi.boolean(),
-})
+});
+
 
 // создает схему для валидации поля favorite при update
 const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required(),
-})
+});
   
+
 // объект со всевозможными схемами для валидации body при запросе
 const schemas = {
     addSchema,
     updateFavoriteSchema,
-}
+};
 
 
 module.exports = {
