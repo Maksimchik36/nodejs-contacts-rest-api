@@ -19,6 +19,10 @@ const contactSchema = new Schema({
         type: Boolean,
         default: false,
     },
+//     owner: {
+//     type: SchemaTypes.ObjectId,
+//     ref: 'user',
+//   }  
 },
 {versionKey: false});
 
@@ -40,7 +44,7 @@ const addSchema = Joi.object({
 });
 
 
-// создает схему для валидации поля favorite при update
+// создает схему для валидации поля favorite при update с помощью Joi
 const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required(),
 });

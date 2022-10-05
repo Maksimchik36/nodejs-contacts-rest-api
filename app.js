@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const contactsRouter = require('./routes/api/contacts');
+const usersRouter = require('./routes/api/users');
 require("dotenv").config();
 
 
@@ -18,6 +19,8 @@ app.use(express.json());
 
 // при запросе на '/api/contacts' его обработчик нужно искать в contactsRouter
 app.use('/api/contacts', contactsRouter);
+// при запросе на '/api/users' его обработчик нужно искать в usersRouter
+app.use('/api/users', usersRouter);
 
 // обработчик ситуаций при запросе на несуществующую страницу 
 app.use((req, res) => {
