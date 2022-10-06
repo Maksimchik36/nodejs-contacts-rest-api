@@ -11,7 +11,7 @@ const app = express();
 // формат сообщений о запросах (от morgan) - короткий или длинный
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
-
+// отображает информацию в консоли
 app.use(logger(formatsLogger));
 app.use(cors());
 // преобразует json-формат тела запроса - в объект
