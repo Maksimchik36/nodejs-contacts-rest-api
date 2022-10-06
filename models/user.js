@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require('joi');
-const { handleSaveErrors } = require("../middlewares");
+const { handleSaveErrors } = require("../helpers");
 
 
 // создает схему для валидации элементов при записи в коллекцию

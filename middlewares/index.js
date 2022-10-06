@@ -1,12 +1,12 @@
 const validateBody = require("./validateBody");
 const validateFavorite = require("./validateFavorite");
-const handleSaveErrors = require("./handleSaveErrors");
 const isValidId = require("./isValidId");
+const authenticate = require("./authenticate");
 
 
 module.exports = {
     validateBody,
     validateFavorite,
-    handleSaveErrors,
     isValidId,
+    authenticate,
 }
