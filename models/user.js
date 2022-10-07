@@ -32,6 +32,7 @@ const userSchema = new Schema(
 // срабатывает в случае ошибки при операции POST(при попытке добавить ещё один элемент с уже существующим таким уникальным полем)
 userSchema.post("save", handleSaveErrors);
 
+
 // создает модель User, вызывая ф-ю model("название коллекции, с которой будет работать", схема, по которой будет осуществляться валидация )
 const User = model("user", userSchema);
 
@@ -43,13 +44,20 @@ const signUpAndLoginSchema = Joi.object({
 });
 
 
+// создает схему для валидации поля subsctiption при update с помощью Joi
+const updateSubscriptionSchema = Joi.object({
+    subscription: Joi.string().valid("starter", "pro", "business").required(),
+});
+
+
 // объект со всевозможными схемами для валидации body при запросе
 const schemas = {
-  signUpAndLoginSchema
+  signUpAndLoginSchema,
+  updateSubscriptionSchema,
 }
 
 
 module.exports = {
   User,
-  schemas
+  schemas,
 }

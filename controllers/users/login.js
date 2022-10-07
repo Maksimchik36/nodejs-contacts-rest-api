@@ -25,7 +25,7 @@ const login = async(req, res) => {
     }
     // создает токен
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
-    // изменяет token у юзера
+    // сохраняет token юзера в базе данных
     await User.findByIdAndUpdate(user._id, {token})
 
 

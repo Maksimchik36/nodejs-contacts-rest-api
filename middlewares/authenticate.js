@@ -18,7 +18,8 @@ const authenticate = async (req, res, next) => {
             const { id } = jwt.verify(token, SECRET_KEY);
             // ищет пользователя с полученным id 
             const user = await User.findById(id);
-            if (!user) {
+            //проверяет отсутствие пользователя или отсутствие у него токена
+            if (!user || !user.token) {
                  throw RequestError(401, "Not authorized");
             }
             // сохраняет все данные по текущему юзеру в объект запроса req. данные будут доступны при любом запросе
