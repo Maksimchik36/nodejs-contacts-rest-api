@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require('joi');
-const { handleSaveErrors } = require("../middlewares");
+const { handleSaveErrors } = require("../helpers");
 
 
 // создает схему для валидации элементов при записи в коллекцию
@@ -19,6 +19,11 @@ const contactSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,     
+  }  
 },
 {versionKey: false});
 
@@ -40,7 +45,7 @@ const addSchema = Joi.object({
 });
 
 
-// создает схему для валидации поля favorite при update
+// создает схему для валидации поля favorite при update с помощью Joi
 const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required(),
 });
