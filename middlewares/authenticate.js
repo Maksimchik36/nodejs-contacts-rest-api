@@ -1,3 +1,5 @@
+// проверяет залогинен ли пользователь
+
 require("dotenv").config();
 const { RequestError } = require("../helpers");
 const jwt = require("jsonwebtoken");

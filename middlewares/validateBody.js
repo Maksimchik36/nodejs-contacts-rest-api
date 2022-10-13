@@ -1,7 +1,8 @@
-const {RequestError} = require("../helpers");
+// проверяет наличие и правильность типа вводимых значений, согласно схемы, которую принимает 
+
+const { RequestError } = require("../helpers");
 
 
-// проверка на правильный тип вводимых значений
 const validateBody = (schema) => {
       const func = (req, res, next) => {
       const {error} = schema.validate(req.body)

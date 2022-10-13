@@ -17,6 +17,9 @@ app.use(cors());
 // преобразует json-формат тела запроса - в объект
 app.use(express.json());
 
+// разрешает экспрессу отдавать на фронтэнд файлы с любыми расширениями из выбранной папки
+app.use(express.static('public'));
+
 // при запросе на '/api/contacts' его обработчик нужно искать в contactsRouter
 app.use('/api/contacts', contactsRouter);
 // при запросе на '/api/users' его обработчик нужно искать в usersRouter

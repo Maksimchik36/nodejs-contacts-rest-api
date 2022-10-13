@@ -1,6 +1,9 @@
-const {User} = require('../../models/user');
+// регистрирует нового пользователя
+
+const { User } = require('../../models/user');
 const { RequestError } = require('../../helpers');
 const bcrypt = require('bcrypt');
+const gravatar = require('gravatar');
 
 
 const register = async (req, res) => {
@@ -11,7 +14,12 @@ const register = async (req, res) => {
     }
     // хэширует пароль (второй параметр - 10 "крупинок соли" - дополнительные символы для шифрования)
     const hashPassword = await bcrypt.hash(password, 10);
-    const result = await User.create({ password: hashPassword, email });
+    // генерирует аватар новому пользователю
+    const avatarURL = gravatar.url(email);
+    // создает нового пользователя
+    const result = await User.create({ password: hashPassword, email, avatarURL });
+
+    // возвращает на фронтэнд
     res.status(201).json({
         user:{ 
         email: result.email,

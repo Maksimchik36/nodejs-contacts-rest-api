@@ -2,7 +2,7 @@ const express = require('express');
 const { ctrlWrapper } = require('../../helpers');
 const ctrl = require('../../controllers/users');
 const router = express.Router();
-const { validateBody, authenticate, validateSubscription } = require('../../middlewares');
+const { validateBody, authenticate, validateSubscription, upload } = require('../../middlewares');
 const { schemas } = require('../../models/user');
 
 
@@ -16,5 +16,6 @@ router.get('/current', authenticate, ctrlWrapper(ctrl.getCurrent));
 
 router.patch('/', authenticate, validateSubscription(schemas.updateSubscriptionSchema), ctrlWrapper(ctrl.updateUserSubscription));
 
+router.patch('/avatars', authenticate, upload.single('avatar'), ctrlWrapper(ctrl.updateAvatar));
 
 module.exports = router;

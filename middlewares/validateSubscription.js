@@ -1,4 +1,6 @@
-const {RequestError} = require("../helpers");
+// проверяет наличие и правильность типа вводимых значений параметра subscription, согласно схемы, которую принимает 
+
+const { RequestError } = require("../helpers");
 
 
 // проверка на правильный тип вводимых значений

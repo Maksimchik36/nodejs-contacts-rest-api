@@ -1,4 +1,6 @@
-const {User} = require("../../models/user");
+// изменяет подписку пользователя
+
+const { User } = require("../../models/user");
 
 
 const updateUserSubscription = async (req, res) => { 
@@ -8,6 +10,7 @@ const updateUserSubscription = async (req, res) => {
   // перезаписывает значение user subscription на введенное при запросе
   await User.findByIdAndUpdate(_id, { subscription }, {new: true});  // {new:true} - для возврата обновленного объекта. по умолчанию возвращает исходный
  
+  // возвращает на фронтэнд
   res.status(200).json();    
 }
 

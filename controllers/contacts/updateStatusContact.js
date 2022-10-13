@@ -1,4 +1,6 @@
-const {Contact} = require("../../models/contact");
+// изменяет значение поля favorite 
+
+const { Contact } = require("../../models/contact");
 const {RequestError} = require("../../helpers");
 
 
@@ -9,6 +11,8 @@ const updateStatusContact = async (req, res) => {
     // создание ошибки и прокидывание её далее
     throw RequestError(404, "Not found");
   }
+
+  // возвращает на фронтэнд
   res.status(200).json(result);    
 }
 
