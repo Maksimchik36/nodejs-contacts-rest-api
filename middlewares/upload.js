@@ -14,6 +14,7 @@ const multerConfig = multer.diskStorage({
         cb(null, file.originalname);
     }
 })
+
 // загружает настройки для multer
 const upload = multer({
     storage: multerConfig,

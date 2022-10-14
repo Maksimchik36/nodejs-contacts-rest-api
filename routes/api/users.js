@@ -16,6 +16,7 @@ router.get('/current', authenticate, ctrlWrapper(ctrl.getCurrent));
 
 router.patch('/', authenticate, validateSubscription(schemas.updateSubscriptionSchema), ctrlWrapper(ctrl.updateUserSubscription));
 
+// "avatar" в upload - "key" в postman - параметр объекта, в который добавляется файл, как значение этого параметра
 router.patch('/avatars', authenticate, upload.single('avatar'), ctrlWrapper(ctrl.updateAvatar));
 
 module.exports = router;
