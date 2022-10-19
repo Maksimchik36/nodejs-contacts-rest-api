@@ -1,25 +1,3 @@
-// получает объект
-// объект должен содержать поля email и password
-// если входные данные не соответствуют - прокидываем ошибку
-
-// вариант - результат:
-// {email, password} - status===200
-
-// правильная работа. варианты
-
-// ошибки: возможные варианты вводимых данных:
-
-// ошибочный ввод данных. проброс ошибок. варианты
-// () - error "data must be exist"   undefined
-// ("") - error "must be object"
-// false - error "must be object"
-// true - error "must be object"
-// null - error "must be object"
-// ()=>{} - error "must be object"
-// Number - error "must be object"
-// [] - error "must be object"
-//
-
 // соединяется с базой данных в mongo-db
 const mongoose = require("mongoose");
 // имитирует запросы
@@ -31,12 +9,10 @@ const app = require("../../app");
 const { User } = require("../../models/user");
 // создает аватар
 const gravatar = require('gravatar');
-
+// хэширует пароль
 const bcrypt = require('bcrypt');
 
 const { DB_TEST_HOST, PORT } = process.env;
-
-jest.setTimeout(110000);
 
 
 describe("test login function", ()=> {
@@ -77,12 +53,7 @@ describe("test login function", ()=> {
         // создает нового пользователя согласно модели
         const user = await User.create(newUser);
 
-        /*
-        1. Проверить правильность получаемого ответа на 
-        AJAX-запрос документации
-        2. Проверить что в базу записался нужный элемент.
-        */
-
+       // имитация ввода данных пользователем
         const loginUser = {
             email: "Maksim@gmail.com",
             password: "Maksim123456"
@@ -97,32 +68,16 @@ describe("test login function", ()=> {
         expect(body.token).toBeTruthy();
         // получает токен из базы данных
         const { token } = await User.findById(user._id);
-        // сравнивает эти два токена
-        expect(body.token).toBe(token);        
+        // сравнивает токен пользователя и токен из базы данных
+        expect(body.token).toBe(token); 
+
+    
+        
+        // expect(body.user).toHaveReturnedWith(
+        //     expect.objectContaining({
+        //         email: expect.any(String),
+        //         subscription: expect.any(String),
+        //     }),
+        // );
     })
 })
-
-
-
-// const login = require('./login');
-
-// describe("test login.js controller", () => {
-//     // правильная работа
-//     test('вводимые данные - ожидаемый результат', () => { 
-//         const result = login("вводимые данные");
-//         expect(result).toBe(true) 
-//     })
-//     //аналогично. убрали промежуточную переменную result
-//     test('вводимые данные - ожидаемый результат', () => { 
-//         expect(login("вводимые данные")).toBe(true) 
-//     })
-    
-//     // ошибочная работа
-//     test('вводимые данные - текст ошибки', () => { 
-//         expect(()=> login("вводимые данные")).toThrow("текст ошибки") 
-//     })
-// });
-
-
-
-
