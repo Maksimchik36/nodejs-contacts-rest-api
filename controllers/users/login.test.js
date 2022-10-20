@@ -72,7 +72,7 @@ describe("test login function", ()=> {
         expect(body.token).toBe(token); 
 
     
-        
+        // в ответе должен возвращаться user c 2 полями email и subscription, имеющие типі данніх String
         // expect(body.user).toHaveReturnedWith(
         //     expect.objectContaining({
         //         email: expect.any(String),
