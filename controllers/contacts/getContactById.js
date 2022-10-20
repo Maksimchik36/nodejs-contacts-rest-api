@@ -1,4 +1,6 @@
-const {Contact} = require("../../models/contact");
+// получает контакт по id
+
+const { Contact } = require("../../models/contact");
 const {RequestError} = require("../../helpers");
 
 
@@ -9,7 +11,9 @@ const getContactById = async (req, res) => {
   if (!result){ 
     // создание ошибки и прокидывание её далее
     throw RequestError(404, "Not found");
-    }
+  }
+  
+  // возвращает на фронтэнд
   res.status(200).json(result);
 }
 

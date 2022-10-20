@@ -1,4 +1,6 @@
-const {Contact} = require("../../models/contact");
+// получает весь список контактов
+
+const { Contact } = require("../../models/contact");
 
 
 const getListContacts = async (req, res) => {
@@ -8,7 +10,9 @@ const getListContacts = async (req, res) => {
   // забирает значение _id из req.user и переименовывает его в owner  
   const { _id: owner } = req.user;
   // находит только созданные текущим пользователем данные. фильтрация происходит по параметру owner и любому параметру из ...query
-  const result = await Contact.find({ owner , ...query}, "", {skip, limit});
+  const result = await Contact.find({ owner, ...query }, "", { skip, limit });
+  
+  // возвращает на фронтэнд
   res.status(200).json(result);       
   }
 

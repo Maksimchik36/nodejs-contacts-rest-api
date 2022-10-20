@@ -1,3 +1,5 @@
+// логинит пользователя 
+
 const { RequestError } = require('../../helpers');
 const { User } = require('../../models/user');
 const bcrypt = require('bcrypt');
@@ -5,6 +7,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const { SECRET_KEY } = process.env;
+
 
 const login = async(req, res) => {
     const { password, email } = req.body;
@@ -26,9 +29,9 @@ const login = async(req, res) => {
     // создает токен
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
     // сохраняет token юзера в базе данных
-    await User.findByIdAndUpdate(user._id, {token})
-
-
+    await User.findByIdAndUpdate(user._id, { token });
+    
+    // возвращает на фронтэнд
     res.status(200).json({
         token,
         user: {
