@@ -8,6 +8,15 @@ const { schemas } = require('../../models/user');
 
 router.post('/signup', validateBody(schemas.signUpAndLoginSchema), ctrlWrapper(ctrl.register));
 
+
+
+
+// router.get('verify/:verificationToken', validateBody(schemas.verifySchema), ctrlWrapper(ctrl.verify));
+router.get('verify/:verificationToken', ctrlWrapper(ctrl.verify));
+
+
+
+
 router.post('/login', validateBody(schemas.signUpAndLoginSchema), ctrlWrapper(ctrl.login));
 
 router.get('/logout', authenticate, ctrlWrapper(ctrl.logout));

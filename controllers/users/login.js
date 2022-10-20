@@ -15,13 +15,18 @@ const login = async(req, res) => {
     if (!user) {
         throw RequestError(401, "Email or password is wrong");
     }
+
+    // проверяет верифицирован ли email
+    if (!user.verify) {
+        throw RequestError(401, "Email is not verify");        
+    }
     
     // проверяет соответствие введенного пароля тому, который уже есть в базе
     const passwordCompare = await bcrypt.compare(password, user.password);
-
     if (!passwordCompare) {
         throw RequestError(401, "Email or password is wrong");        
     }
+
     // создает данные для кодирования
     const payload = {
         id: user._id,
