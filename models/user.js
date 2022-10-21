@@ -56,6 +56,11 @@ const signUpAndLoginSchema = Joi.object({
     email: Joi.string().required(),
 });
 
+// создает схему для валидации почты при повторном отправлении письма для верификации с помощью Joi
+const verifyEmailSchema = Joi.object({
+  email: Joi.string().required(),
+})
+
 
 // создает схему для валидации поля subsctiption при update с помощью Joi
 const updateSubscriptionSchema = Joi.object({
@@ -67,6 +72,7 @@ const updateSubscriptionSchema = Joi.object({
 const schemas = {
   signUpAndLoginSchema,
   updateSubscriptionSchema,
+  verifyEmailSchema
 }
 
 

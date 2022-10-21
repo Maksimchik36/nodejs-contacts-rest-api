@@ -1,11 +1,10 @@
 // регистрирует нового пользователя
 
 const { User } = require('../../models/user');
-const { RequestError, sendEmailWithSendGrid } = require('../../helpers');
+const { RequestError, sendEmailWithSendGrid, createVerifyEmail } = require('../../helpers');
 const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
-const nanoid = require("nanoid");
-const { BASE_URL } = process.env;
+const { nanoid } = require("nanoid");
 
 
 const register = async (req, res) => {
@@ -24,14 +23,9 @@ const register = async (req, res) => {
     // создает нового пользователя
     const result = await User.create({ password: hashPassword, email, avatarURL, verificationToken });
     // создает письмо в виде объекта, которое будет отправлено на почту регистрирующемуся пользователю
-    const mail = {
-        to: email,
-        subject: "Подтверждение регистрации на сайте",
-        html: `<a target="_blank" href=${BASE_URL}users/verify/${verificationToken}>Нажмите для подтверждения</a>`
-    }
+    const mail = createVerifyEmail(email, verificationToken)
     // отправляет пользователю на почту письмо для верификации(подтверждения) токена
     await sendEmailWithSendGrid(mail);
-
     
 
     // возвращает на фронтэнд

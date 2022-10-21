@@ -2,6 +2,7 @@ const RequestError = require('./RequestError');
 const ctrlWrapper = require('./ctrlWrapper');
 const handleSaveErrors = require('./handleSaveErrors');
 const sendEmailWithSendGrid = require('./sendEmailWithSendGrid');
+const createVerifyEmail = require('./createVerifyEmail');
 
 
 module.exports = {
@@ -9,4 +10,5 @@ module.exports = {
     ctrlWrapper,
     handleSaveErrors,
     sendEmailWithSendGrid,
+    createVerifyEmail,
 }

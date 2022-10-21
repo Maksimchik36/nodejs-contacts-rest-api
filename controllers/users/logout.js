@@ -8,7 +8,7 @@ const logout = async (req, res) => {
     // перезаписывает значение token на null
     await User.findByIdAndUpdate(_id, { token: null });
 
-    //возвращает на фронтэнд
+    // возвращает на фронтэнд
     res.status(204).send("No Content")
 }
 
