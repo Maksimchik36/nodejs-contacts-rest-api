@@ -23,12 +23,20 @@ const userSchema = new Schema(
   token: {
     type: String,
     default: null,
-    },
+  },
   
   avatarURL: {
     type: String,
     required: true,
-  }
+  },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
 },
 {versionKey: false}
 );
@@ -48,6 +56,11 @@ const signUpAndLoginSchema = Joi.object({
     email: Joi.string().required(),
 });
 
+// создает схему для валидации почты при повторном отправлении письма для верификации с помощью Joi
+const verifyEmailSchema = Joi.object({
+  email: Joi.string().required(),
+})
+
 
 // создает схему для валидации поля subsctiption при update с помощью Joi
 const updateSubscriptionSchema = Joi.object({
@@ -59,6 +72,7 @@ const updateSubscriptionSchema = Joi.object({
 const schemas = {
   signUpAndLoginSchema,
   updateSubscriptionSchema,
+  verifyEmailSchema
 }
 
 
